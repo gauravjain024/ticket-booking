@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="border-end bg-light mt-5" id="sidebar-wrapper" *ngIf="showSidebar">
+      <div class="list-group list-group-flush  mt-2">
+        <a routerLink="/events" class="list-group-item list-group-item-action">
+          🎬 Events
+        </a>
+        <a routerLink="/my-bookings" class="list-group-item list-group-item-action">
+          📅 My Bookings
+        </a>
+        <a (click)="logout()" class="list-group-item list-group-item-action text-danger">
+          🔓 Logout
+        </a>
+      </div>
+    </div>
+  
+    <!-- Page Content -->
+    <div id="page-content-wrapper" class="p-4 w-100">
+      <router-outlet></router-outlet>
+    </div>
+  </div>

@@ -1,0 +1,61 @@
+.container-fluid {
+    padding: 2rem;
+    background: #f4f6f9;
+    min-height: 100vh;
+  }
+  
+  h2 {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 2rem;
+  }
+  
+  .event-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    overflow: hidden;
+  
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+  
+    .card-body {
+      padding: 1.5rem;
+  
+      h5 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #333;
+      }
+  
+      p {
+        margin: 0.4rem 0;
+        font-size: 0.95rem;
+        color: #666;
+      }
+  
+      .btn {
+        margin-top: 1rem;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 0.95rem;
+        padding: 0.6rem 1.2rem;
+        transition: all 0.3s ease;
+  
+        &.btn-success {
+          background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+          border: none;
+          color: #fff;
+  
+          &:hover {
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+          }
+        }
+      }
+    }
+  }
+  

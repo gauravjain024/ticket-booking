@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <h3>🎟️ My Bookings</h3>
+    <table class="table table-striped mt-3" *ngIf="bookings.length > 0; else noData">
+      <thead class="thead-dark">
+        <tr>
+          <th>Event</th>
+          <th>Event Date</th>
+          <th>Event Time</th>
+          <th>Seats Booked</th>
+          <th>Booked On</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <td>{{ booking.event_name }}</td>
+          <td>{{ booking.date | date: 'mediumDate' }}</td>
+          <td>{{ booking.start_time }}</td>
+          <td>{{ booking.seats }}</td>
+          <td>{{ booking.booked_at | date : 'MMM d, hh:mm' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <ng-template #noData>
+      <p class="text-muted">You have no bookings yet.</p>
+    </ng-template>
+  </div>
+  
