@@ -59,8 +59,6 @@ export const bookSeats = async (req: Request, res: Response) => {
   const slotDateTime = new Date(slotDateTimeString);
   const now = new Date();
 
-  console.log("Slot DateTime:", slotDateTime);
-  console.log("Slot slotDateTimeString:", slotDateTimeString);
   if (isNaN(slotDateTime.getTime())) {
     return res
       .status(500)
@@ -154,4 +152,60 @@ export const getUserBookings = async (req: Request, res: Response) => {
   );
 
   res.json(result.rows);
+};
+
+
+export const cancelBooking = async (req: Request, res: Response) => {
+  const { bookingId } = req.params;
+  const userId = (req as any).user.userId;
+
+  // Check booking belongs to this user
+  const bookingResult = await pool.query(
+    `SELECT b.*, s.date, s.start_time 
+     FROM bookings b 
+     JOIN event_slots s ON b.slot_id = s.id 
+     WHERE b.id = $1 AND b.user_id = $2`,
+    [bookingId, userId]
+  );
+
+  const booking = bookingResult.rows[0];
+  if (!booking)
+    return res
+      .status(404)
+      .json({ message: "Booking not found or unauthorized" });
+  
+  const now = new Date();
+  const datePart = new Date(booking.date); // safely extract date
+  const slotDateTimeString = new Date(
+    datePart.setHours(
+      booking.start_time.split(":")[0],
+      booking.start_time.split(":")[1],
+      0,
+      0
+    )
+  ).toISOString();
+  const slotDateTime = new Date(slotDateTimeString);
+  
+
+  if (slotDateTime < now) {
+    return res.status(400).json({ message: "Cannot cancel past bookings" });
+  }
+
+  // Free up the seats in the slot
+  await pool.query(
+    `UPDATE event_slots SET available_slots = available_slots + $1 WHERE id = $2`,
+    [booking.seats, booking.slot_id]
+  );
+
+  // Delete booking record
+  await pool.query(`DELETE FROM bookings WHERE id=$1`, [bookingId]);
+
+  // Emit update to slot's event room
+  io.to(booking.event_id).emit("bookingUpdated", {
+    eventId: booking.event_id,
+    slotId: booking.slot_id,
+    message: "Booking cancelled",
+  });
+
+  res.json({ message: "Booking cancelled successfully" });
 };

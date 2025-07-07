@@ -8,6 +8,7 @@
           <th>Event Time</th>
           <th>Seats Booked</th>
           <th>Booked On</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -17,6 +18,11 @@
           <td>{{ booking.start_time }}</td>
           <td>{{ booking.seats }}</td>
           <td>{{ booking.booked_at | date : 'MMM d, hh:mm' }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="cancelBooking(booking.booking_id)">
+              Cancel
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

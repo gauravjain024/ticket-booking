@@ -40,7 +40,7 @@ import { MyBookingsComponent } from './pages/my-bookings/my-bookings.component';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
       timeOut: 3000,
-      progressBar: true,
+      // progressBar: true,
     }),
   ],
   providers: [

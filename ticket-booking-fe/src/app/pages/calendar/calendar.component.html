@@ -1,11 +1,11 @@
 <div class="container-fluid my-4">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="text-primary">{{ eventName }}</h2>
+    <h2>{{ eventName }}</h2>
     <div>
-      <button class="btn btn-outline-secondary me-2" (click)="prevWeek()" [disabled]="currentWeekIndex === 0">
+      <button class="btn btn-outline-primary me-2" (click)="prevWeek()" [disabled]="currentWeekIndex === 0">
         ← Previous Week
       </button>
-      <button class="btn btn-outline-secondary" (click)="nextWeek()" [disabled]="currentWeekIndex === weeks.length - 1">
+      <button class="btn btn-clf btn-outline-primary" (click)="nextWeek()" [disabled]="currentWeekIndex === weeks.length - 1">
         Next Week →
       </button>
     </div>
@@ -25,11 +25,11 @@
 
       <ng-container *ngIf="calendarData[weeks[currentWeekIndex]]">
         <div *ngFor="let slot of calendarData[weeks[currentWeekIndex]][day]" class="card mb-3 shadow-sm">
-          <div class="card-body">
+          <div class="card-body" [ngClass]="{'expired': isSlotDisabled(slot)}">
             <h6 class="card-title mb-1">{{ slot.title }}</h6>
             <p class="mb-1 text-muted small">{{ slot.start_time }} - {{ slot.end_time }}</p>
             <p class="mb-1">🎟️ {{ slot.available_slots }} / {{ slot.total_slots }} available</p>
-            <p class="badge bg-secondary mb-2" *ngIf="isSlotDisabled(slot)">
+            <p class="badge bg-black mb-2" *ngIf="isSlotDisabled(slot)">
               Expired
             </p>
             <div class="d-flex align-items-center mb-2">
@@ -52,7 +52,7 @@
             </div>
 
             <button
-              class="btn btn-sm btn-success w-100"
+              class="btn btn-sm btn-prime w-100"
               (click)="bookSeats(slot)"
               [disabled]="!seatSelections[slot.slot_id] || seatSelections[slot.slot_id] === 0 || isSlotDisabled(slot)"
             >

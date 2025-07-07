@@ -7,7 +7,7 @@
           <h5 class="card-title">{{ event.name }}</h5>
           <p class="card-text flex-grow-1">{{ event.description }}</p>
           <p><strong>From:</strong> {{ event.start_date | date: 'dd-MMM-yyyy' }} <br><strong>To:</strong> {{ event.end_date  | date: 'dd-MMM-yyyy' }}</p>
-          <button (click)="goToCalendar(event.id)" class="btn btn-success mt-3">View Tickets</button>
+          <button (click)="goToCalendar(event.id)" class="btn btn-outline-info mt-3">View Tickets</button>
         </div>
       </div>
     </div>

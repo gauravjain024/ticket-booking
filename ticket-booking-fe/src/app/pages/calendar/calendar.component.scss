@@ -44,6 +44,12 @@
     .card-body {
       padding: 1rem;
     }
+
+    .card-body.expired {
+        opacity: 0.5;
+        background-color: #f8f9fa;
+        border: 1px dashed #dee2e6;
+    }
   
     .card-title {
       font-size: 1.05rem;
@@ -87,11 +93,11 @@
   }
   
   .btn-outline-primary {
-    border-color: #0d6efd;
-    color: #0d6efd;
+    border-color: #45a5da;
+    color: #45a5da;
   
     &:hover {
-      background-color: #0d6efd;
+      background-color: #45a5da;
       color: #fff;
     }
   }
@@ -136,3 +142,10 @@
     margin: 0 0.5rem;
   }
   
+  .badge.bg-black {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: x-small !important;
+    border-radius: 0px;
+  }

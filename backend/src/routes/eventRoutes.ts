@@ -5,6 +5,7 @@ import {
   getCalendarSlots,
   bookSeats,
   getUserBookings,
+  cancelBooking,
 } from "../controllers/eventController";
 import { asyncHandler } from "../middlewares/asyncHandler";
 import { authenticateToken } from "../middlewares/authMiddleware";
@@ -17,5 +18,11 @@ router.get("/calendar-slots", authenticateToken, getCalendarSlots);
 router.get("/calendar-slots2",  getCalendarSlots);
 router.post("/book-seats", authenticateToken, asyncHandler(bookSeats));
 router.get("/my-bookings", authenticateToken, getUserBookings);
+router.delete(
+  "/bookings/:bookingId",
+  authenticateToken,
+  asyncHandler(cancelBooking)
+);
+
 
 export default router;

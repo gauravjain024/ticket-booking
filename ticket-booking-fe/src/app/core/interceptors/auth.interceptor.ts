@@ -6,6 +6,7 @@ import {
   HttpEvent,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { TOKEN_KEY } from '../../constants/data-constants';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -13,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token'); // or sessionStorage.getItem('token')
+    const token = localStorage.getItem(TOKEN_KEY); // or sessionStorage.getItem('token')
 
     if (token) {
       const authReq = req.clone({

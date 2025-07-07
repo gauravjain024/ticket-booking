@@ -53,4 +53,7 @@ export class ApiService {
   getMyBookings() {
     return this.http.get(`${this.api}/api/my-bookings`);
   }
+  cancelBooking(bookingId: string) {
+    return this.http.delete(`${this.api}/api/bookings/${bookingId}`);
+  }
 }
