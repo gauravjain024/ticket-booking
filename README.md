@@ -18,10 +18,12 @@ To start a local development server, run:
 ```bash
 #To run Fronend
 cd ticket-booking-fe
+npm install
 ng serve
 
 #To run Backend
 cd backend
+npm install
 npm run start
 ```
 
