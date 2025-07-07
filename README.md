@@ -7,7 +7,13 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 To start a local development server, run:
 
 ```bash
+#To run Fronend
+cd ticket-booking-fe
 ng serve
+
+#To run Backend
+cd backend
+npm run start
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
